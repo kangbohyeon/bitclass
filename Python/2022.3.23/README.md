@@ -1,4 +1,3 @@
 # Chapter
-  1.
-  2.
-  3.
+  1. Chapter6
+  2. Chapter7
