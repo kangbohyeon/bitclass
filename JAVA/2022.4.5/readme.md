@@ -21,4 +21,3 @@
   - stack and queue
   - Linked list
   - Tree
-  - Graph
