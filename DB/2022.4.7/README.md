@@ -19,7 +19,7 @@
     - 인덱스
 
 
-# MySQL 다운로드 방법
+# MySQL 다운로드 방법 및 employees import
     https://dev.mysql.com/downloads/
     -> MySQL installer for windows
     -> windows, MSI installer (사이즈큰거 web말고)
