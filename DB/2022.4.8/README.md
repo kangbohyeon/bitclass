@@ -1,34 +1,23 @@
--- varchar 글자수에 맞춰 변함 (가변)
--- char 고정
+## Chapter6 SQL 기본
+  - SELECT문
+    - 원하는 데이터를 가져와 주는 기본적인 <SELECT ... FROM>
+    - 특정한 조건의 데이터만 조회하는 <SELECT ... FROM ... WHERE>
+    - GROUP BY 및 HAVING 그리고 집계 함수
+    - SQL의 분류
+  - 데이터의 변경을 위한 SQL문
+    - 데이터의 삽입 : INSERT
+    - 데이터의 수정 : UPDATE
+    - 데이터의 삭제 : DELETE FROM
 
--- delete, update 적용!!
-set sql_safe_updates = 0;
+  
+  
+-- varchar : 글자수에 맞춰 변함 (가변)
+  
+-- char : 고정
+
+-- delete, update 적용
+  
+  set sql_safe_updates = 0;
 
 
 
--- 과제1 buytbl 에서 가격이 평균가격보다 높은 가격을 가진 제품 이름과 평균가격.
-select * from buytb1;
-select prodname ,avg(price) as '평균가격'
-from buytb1
-where price>= (select avg(price) from buytb1)
-group by prodname;
-
--- 과제 2 usertbl 에서 mobile1에 있는 null의 개수는?
-select * from usertb1;
-select count(*) from usertb1 where mobile1 is null;
-
--- 과제3 p222 auto_increment 의 step값 실습
-create table testtbl3(
-id int auto_increment primary key,
-username char(3),
-age int
-);
-
-alter table testtbl3 auto_increment=1000;
-
-set @@auto_increment_increment=3;
-
-insert into testtbl3 values(null, '나연', 20);
-insert into testtbl3 values(null, '정연', 18);
-insert into testtbl3 values(null, '모모', 19);
-select * from testtbl3;
