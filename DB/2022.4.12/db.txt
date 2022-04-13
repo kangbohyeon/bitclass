@@ -1,0 +1,143 @@
+데이터 : 하나하나의 단편적인 정보
+테이블 회원이나 제품의 데이터를 입력하기 위해, 표형태로 표현한 것
+데이터베이스 : 테이블이 저장되는 저장소
+DMBS : database management system, 데이터베이스를 관리하는 시스템
+열 : 각 테이블은 열로 구성(=컬럼=필드)
+열이름 : 각 열을 구분하기 위한 이름
+데이터형식 : 열의 데이터 형식을 말함 , 문자나 숫자형식같은거
+행(=로우=레코드) : 실질적인 데이터
+기본키(primary key) : 각 행을 구분하는 유일한 열을 말함, 중복되어서는 안되며, 비어서도 안된다
+외래키(foreign key) : 두 테이블의 관계를 맺어주는 키
+인덱스 : 찾아보기와 같은 개념, 테이블의 열단위에 생성
+데이터베이스 튜닝 : 데이터베이스 성능을 향상시키거나 응답하는 시간을 단축시키는 것, 쿼리에 대한 응답을 줄이기 위해서 가장 집중적으로 보는 부분 중 하나가 인덱스부분, 인덱스를 적절히 활용하고 있느냐에 따라서 시스템의 성능이 차이가 날수 있다.
+뷰 : 가상테이블
+스토어드 프로스저 : mysql에서 제공해주는 프로그래밍 기능, sql문을 하나로 묶어서 편리하게 사용하는 기능
+트리거 : 테이블에 부착되어서 테이블에 insert or update or delete 작업이 발생되면 실행되는 코드
+
+
+Between ... and
+Select name, height from usertbl where height >=180 and height <= 183;
+
+Select name, height from usertbl where height between 180 and 183;
+
+
+IN()
+Select name , address from usertbl where addr = '경남' or addr = '전남' or addr ='경북';
+
+Select name , address from usertbl where addr IN('경남','전남','경북');
+
+LIKE
+Select name, height from useable where name LIKE '김%';( 김으로 시작하는사람)
+
+_ (한글자 매치)
+Select name, height from useable where name LIKE '_종신';(종신인 사람)
+
+서브쿼리 : 쿼리문안에 또 쿼리문이 들어 있는것
+Select name, height from usertbl where height > 177;
+Select name, height from usertbl where height >(select height from usertbl where name ='김경호');
+
+ANY(서브쿼리의 여러개의 결과중 한가지만 만족해도 가능) == IN
+ALL(서브쿼리의 여러개의 결과를 모두 만족해야 가능)
+Select name, Select name, height from usertbl where height > ANY(select height from usertbl where addr ='경남');
+
+Order by (기본적으로 오름차순 asc, 내림차순하고싶으면 desc);
+
+Distinct : 중복된 것은 하나만 남김
+Select distinct addr from usertbl;
+
+Limit : 출력하는 개수를 제한
+Select emp_no, hire_date from employees order by hire_date asc limit 5;
+
+Group by : 그룹으로 묶어주는 역할
+Select userID, sum(amount) as '총 구매 개수' from butyl group by userid;
+Count : Null의 개수는 제외하고 계산
+Having : 집계함수에 대한 조건을 제한
+
+Select -> from -> where -> group by -> having -> order by 
+
+Rollup : 총합 똔느 중간합계
+Select num, group name, sum(price * amount) from butyl group by group name, num with rollup;
+
+DML
+Select,update,delete,insert
+
+DDL
+Creat,alter,drop
+
+DCL
+Revoke,grant  
+
+Update testtbl4 set lname='없음' where name = 'kyoichi';
+
+with절은 cte(common table expression)을 표현하기 위한 구문으로 기존의 뷰, 파생테이블, 임시테이블 등으로 사용되던 것으로 대신할수 있음
+
+비재귀적 cte 
+With cte_테이블이름(열이름) as (<쿼리문>) select 열이름 from cte_테이블이름;
+Select userid , sum(price*amount) from buytbl group by userid;
+With abc(userid, total) as (select userid, sum(price*amount) from buytbl group by userid) Select * from abc order by total desc;
+
+Small int : -32000~32000
+Int : -21억 ~ 21억
+big int : -900경 ~ 900경
+decimal(5,2) : 전체 자릿수를 5자리, 소수점 이하를 2자리로
+Char : 1~255
+Varchar : 1~65535
+Longtext : 1~4gb
+Long blob : 1~4gb
+Date : yyyy-mm-dd
+Datetime : yyyy-mm-dd hh:mm:ss
+
+Set @변수이름 = 변수의 값 ; -- 변수의 선언 및 값 대입
+Select @변수이름; -- 변수의 값 출력
+
+Cast (expression as 데이터형식[(길이)])
+Convert (expression, 데이터형식[(길이)])
+
+Select avg(amount) from buytbl;
+Select cast(avg(amount) as signed integer) from buytbl;
+Select convert(avg(amout),signed integer) from buytbl;
+
+if(수식,참,거짓)
+
+ifnull(수식1,수식2) : 수식1이 Null이 아니면 수식1이 반환 ,수식1이 Null이면 수식2반환
+
+nullif(수식1,수식2) : 수식1과 수식2가 같으면 null, 다르면 수식1반환
+
+bin(2진수) , hex(16진수), oct(8진수)
+conv(숫자 원래 진수, 변환할 진수) : 숫자를 원래 진수에서 변환할 진수로 계산
+conv(100,10,8) : 100을 8진수로 변환하여 144출력 
+
+
+Case ~ when ~else ~end
+Select case 10
+When 1 then '일'
+When 5 then '오'
+When 10 then '십'
+Else '모름'
+End as 'case연습';
+
+Select asscii('A'), char(65);
+Select bit_length('abc'), char_length('abc'), length('abc')'
+
+concat(문자열1,문자열2,,,). concat_ws(구분자,문자열1,문자열2,,,) 
+Select concat_ws('/','2025','01','01');
+2025/01/01
+
+format(숫자, 소수점자릿수)
+Select format(123456.123456,4);
+123456.1235
+
+
+Inner join 양쪽 테이블에 모든 내용이 있는것만 조인
+Outer join은 한쪽에만 내용이 있어도 그결과가 표시되는 조인방식
+
+Left outer join(= left join) : 왼쪽테이블의 것은 모두 출력
+right outer join(= right join) : 오른쪽테이블의 것은 모두 출력
+Cross join : 한쪽 테이블의 모든 행들과 다른쪽 테이블의 모든행을 조인시키는 기능
+
+Union : 중복된 열은 제거되고 데이터가 정렬(열의 개수가 같고, 데이터 형식도 각열단위로 같거나 서로 호환)
+Union all : 중복된 열까지 모두 출력
+ 
+
+
+
