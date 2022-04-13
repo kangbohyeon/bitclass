@@ -1,0 +1,65 @@
+p61~115
+
+
+mongod -dbpath c:/mongodb
+mongo
+
+
+
+몽고디비는 데이터베이스와 컬렉션은 처음입력시 생성
+
+mysql		nosql
+database,table = collection(documents)
+columns	=document(field,value) 
+
+
+db.inventory.find({})   <=> select * from inventory
+db.inventory.find({status:"D"})   <=> select * from inventory where status="D";
+db.inventory.find({status:{$in:["A","D"]}})  <=> select * from inventory where status in("A","D");
+db.inventory.find({status:"A",qty:{$lt:30}})  <=> select * from inventory where status="A" and qty<30;
+db.inventory.find({$or:[{status:"A"},{qty:{$lt:30}}]}))  <=> select * from inventory where status="A" or qty<30;
+db.inventory.find({ status:"A",$or:[{qty:{$lt:30}}, {item:/^p/}]})  <=> select * from inventory where status="A" and (qty<30 or item like "p%")
+
+$eq : 특정 값과 같은 값을 갖는 경우 참
+$gt : 특정 값보다 큰 값을 갖는 경우 참
+$gte : 특정값보다 크거나 같은 값을 갖는 경우 참
+$in : 배열에 지정된 값들 중 일치하는 값을 갖는 경우 참
+$lt : 특정 값보다 작은 값을 갖는 경우 참
+$lte : 특정 값보다 작거나 같은 값을 갖는 경우 참
+$ne : 특정값과 다른값을 갖는 경우 참
+$nin : 배열에 지정된 값들과 일치하지 않는 경우 참
+
+db.inventory.find({tags:{$all:["red","blank"]}) : 값을 포함하고 있는 요소들 조회
+db.inventory.find({tags:"red"}) : 배열필드에 지정된 값을 가진 요소가 하나 이상 있는지 조회
+db.inventory.find({dim_cm:{$gt:25}}) : dim_cm배열에 있는값들중 25보다 큰값이 하나라도 있으면 참
+db.inventory.find({dim_cm:{$gt:15,$lt:20}}) :dim_cm배열에 있는 값들중 15보다크고 20보다 작은값이 하나라도 있으면 참
+db.inventory.find({dim_cm:{$elemMatch: {$gt:22,$lt:30}}}) : 지정된 조건을 모두 충족하는 배열요소쿼리 , dim_cm배열이 22보다크고30보다 작은 모두해당될때 참
+db.inventory.find({"dim_cm.1":{$gt:25}}) : 배열인덱스로 쿼리(인덱스는 0부터 시작) , dim_cm배열중 2번째 인덱스가 25보다 큰값이 참
+db.inventory.find({"tags":{$size:3}}) : 배열의 길이(크기)로 쿼리 , tags의 크기가 3인 경우 참
+db.inventory.find({'instock.qty':{$lte:20}}) : 도큐먼트 배열에 포함된 필드에 조건지정, instock배열에서 qty가 20보다 작은값이 하나라도 있으면 참
+db.inventory.find({'instock.0.qty':{$lte:20}}) : 배열 인덱스로 내장 도큐먼트에서 쿼리하기, instock에서 첫번째 인덱스에서 qty값이 20보다 작은값이 있으면 참
+db.inventory.find({"instock":{$elemMatch:{qty:{$gt:10,$lte:20}}}}) : $elemMatch를 이용한 다중 조건 지정하기 ,  instock배열에서 qty값이 10보다 크고 20보다 작은값이 하나라도 있으면 참
+
+db.inventory.find({status:"A"},{item:1,status:1}) : 특정필드들 조회하기, select item, status from inventory where status='A';
+db.inventory.find({status:"A"},{instock:0,status:0}) : 특정필드들 제외시키기, select item,size from inventory where status='A';
+db.inventory.find({status:"A"},{item:1,status:1,"size.uom":1}) : 내장 도큐먼트의 특정 필드 반환 , select item.status,size.uom from inventory where status:"A";
+db.inventory.find({status:"A"},{"size.uom":0}) : 내장 도큐먼트의 특정 필드 제외시키기, select item,status,size.h,size.w,instock from inventory where status:"A";
+db.inventory.find({status:"A"},{item:1, status:1,"instock.qty":1}) : 배열 내의 내장 도큐먼트 프로젝션 , select item,status,instock.qty from inventory where status:"A";
+
+db.inventory.find({item:null}) : item 필드가 null이거나 없는 경우 쿼리
+db.inventory.find({item:{$exists:false}}) : 필드를 포함하지 않는 도큐먼트 쿼리, item필드가 없는것이 참
+db.inventory.find({item:{$exists:true}}) :  item필드가 있는것이 참
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
