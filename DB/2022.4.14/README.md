@@ -1,11 +1,11 @@
-for(i=0;i<100000;i++){
+for(i=0;i<500000;i++){
 db.user.insertOne(
 {"i":i,
 "username":"user"+i,
-"age":Math.floor(Math.random()*120),
-"created":new Date()
-}
-);
+"age":Math.floor(Math.random()*100),
+"score":Math.floor(Math.random()*100),
+"time":new Date()
+});
 }
 
 
