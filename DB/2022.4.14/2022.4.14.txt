@@ -1,0 +1,156 @@
+인덱스 50만개 생성
+for(i=0;i<500000;i++){
+db.user.insertOne(
+{"userid":i,
+"username":"user"+i,
+"age":Math.floor(Math.random()*100),
+"score":Math.floor(Math.random()*100),
+"time":new Date()
+});
+}
+
+
+인덱스생성전 속도측정
+db.user.find({score:"23"}).explain("executionStats").executionStats.executionTimeMillis
+228
+db.user.find({userid:"20300"}).explain("executionStats").executionStats.executionTimeMillis
+228
+db.user.find({score:"53"}).explain("executionStats").executionStats.executionTimeMillis
+237
+db.user.find({score:{$gt:"3333"}}).explain("executionStats").executionStats.executionTimeMillis
+225
+db.user.find({userid:"11111"}).sort({score:1}).explain("executionStats").executionStats.executionTimeMillis
+261
+db.user.find({userid:"1222",score:{$gt:22}}).explain("executionStats").executionStats.executionTimeMillis
+263
+db.user.find({score:{$gt:22},age:"22"}).explain("executionStats").executionStats.executionTimeMillis
+229
+db.user.find({userid:"2222",age:"22",score:{$gt:"22"}}).explain("executionStats").executionStats.executionTimeMillis
+227
+
+인덱스생성(1이 오름차순, -1이 내림차순)
+db.user.createIndex({score:-1})
+db.user.createIndex({userid:1,score:-1})
+
+인덱스한개삭제
+db.user.dropIndex("score_1")
+
+인덱스여러개삭제
+db.user.dropIndex("userid_1_score_-1")
+
+인덱스 조회
+db.user.getIndexes()
+
+
+
+
+인덱스생성후 속도측정
+db.user.createIndex({score:1})
+db.user.find({score:"23"}).explain("executionStats").executionStats.executionTimeMillis
+4
+
+db.user.createIndex({userid:-1})
+db.user.find({userid:"20300"}).explain("executionStats").executionStats.executionTimeMillis
+1
+
+db.user.createIndex({score:1})
+db.user.find({score:"53"}).explain("executionStats").executionStats.executionTimeMillis
+1
+
+db.user.createIndex({age:1})
+db.user.find({age:"53"}).explain("executionStats").executionStats.executionTimeMillis
+1
+
+db.user.createIndex({userid:1,score:1})
+db.user.find({userid:"1222",score:{$gt:22}}).explain("executionStats").executionStats.executionTimeMillis
+3
+
+db.user.createIndex({userid:1,score:1,age:1})
+db.user.find({userid:"2222",age:"22",score:{$gt:"22"}}).explain("executionStats").executionStats.executionTimeMillis
+1
+
+db.user.dropIndex("userid_1_score_1_age_1")
+db.user.createIndex({userid:1})
+db.user.find({username:{$gt:"user3333"}}).explain("executionStats").executionStats.executionTimeMillis
+db.user.dropIndex("userid_1")
+
+
+
+
+var cursor = db.user.find().sort({"userid":1}).limit(5).skip(50000)
+while(cursor.hasNext()){
+obj=cursor.next()
+print(obj.userid," ", obj.username," ", obj.age," ",obj.score)
+}
+
+var cursor = db.user.find().sort({"i":1})
+for(i=0;i<5;i++){
+obj=cursor.next()
+print(obj.userid+50000," ", obj.username," ", obj.age," ",obj.score)
+}
+
+샘플데이터
+db.library.insert(
+[
+{_id:101,name:"Java", descroption:"By ABC"},
+{_id:102,name:"MongoDB", descroption:"By XYZ"},
+{_id:103,name:"Python", descroption:"By ABCD"},
+{_id:104,name:"Engineering Mathematics", descroption:"By *****"},
+{_id:105,name:"Salesforce", descroption:"By Salesforce"},
+])
+
+텍스트 인덱스 생성
+db.library.createIndex({name:"text",description:"text"})
+
+java가 있는 도큐먼트 반환
+db.library.find({$text:{$search:"Java"}})
+
+java book이 있는 도큐먼트 반환
+db.library.find({$text:{$search:"\"Java Book\""}})
+
+Sorting
+몽고디비가 반환하는 결과는 기본적으로 정렬되어 있지 않으므로 정렬된 결과물 원하는 경우 sort() 사용
+
+
+p195~196 
+test에 import
+mongoimport c:/temp/neighborhoods.json  -c neighborhoods
+mongoimport c:/temp/restaurants.json  -c rastaurants
+
+
+video에 import 
+mongoimport c:/temp/neighborhoods.json --db video -c neighborhoods
+mongoimport c:/temp/restaurants.json --db video -c rastaurants
+
+index create
+db.neighborhoods.createIndex({location:"2dsphere"})
+db.restaurants.createIndex({location:"2dsphere"})
+
+데이터 탐색
+db.neighborhoods.find({name:"Clinton"})
+db.restaurants.find({name:"Little Pie Company"})
+
+현재 지역찾기
+db.neighborhoods.findOne({geometry:{$geoIntersects:{$geometry:{type:"Point", coordinates:[-73.93414657,40.82302903]}}}})
+
+지역내모든 레스토랑찾기
+var neighborhood = db.neighborhoods.findOne({geometry:{$geoIntersects:{$geometry:{type:"Point",coordinates:[-73.93414657,40.82302903]}}}})
+db.restaurants.find({location:{$geoWithin:{$geometry:neighborhood.geometry}}}, {name:1,_id:0});
+
+
+범위내에서 레스토랑 찾기
+db.restaurants.find({location:{$geoWithin:{$centerSphere:[[-73.93414657,40.82302903],5/3963.2]}}})
+
+
+var METERS_PER_MILE = 1609.34
+db.restaurants.find({location:{$nearSphere:{$geometry:{type:"Point", coordinates:[-73.93414657,40.82302903],$maxDistance:5*METERS_PER_MILE}}}})
+
+
+p216
+
+
+
+
+
+
+
