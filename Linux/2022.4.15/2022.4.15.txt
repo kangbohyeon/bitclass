@@ -1,0 +1,81 @@
+~ : Tlide
+` : backtick, grave
+! : exclamation mark
+@ : ampersat
+# : octothrope
+$ : dollar sign
+% : percent
+^ : caret
+& : ampersand
+* : asterisk
+- : hyphen
+_ : underscore
+{} : brace , curly bracket
+[] : bracket
+| : pipe
+\ : backslash
+/ : slash
+: :colon
+; : semicolon
+"" : quote
+' : apostrophe
+
+public IP address
+A class : 0.0.0.0 ~ 127.255.255.255
+B class : 128.0.0.0 ~ 191.255.255.255
+C class : 192.0.0.0 ~ 223.255.255.255
+D class : 224.0.0.0 ~ 239.255.255.255
+E class : 240.0.0.0 ~ 255.255.255.255
+
+A class : 0------- ******** ******** ******** (* : hostaddress , - : address)
+B class : 10------ -------- ******** ********
+C class : 110----- -------- -------- ********
+D class : 1110**** ******** ******** ********
+E class : 1111**** ******** ******** ********
+
+sub net mask
+A class : 11111111 00000000 00000000 00000000
+B class : 11111111 11111111 00000000 00000000
+C class : 11111111 11111111 11111111 00000000
+
+네임서버(114같은 존재)
+168.126.63.1
+
+NAT IP
+A class : 10.xxx.xxx.xxx
+B class : 172.16.xxx.xxx ~ 172.31.xxx.xxx
+C class : 192.168.0.xxx ~ 192.168.255.xxx
+
+
+관리자실행 
+sudo -i
+빠져나오기 exit
+
+컴퓨터 종류방법
+power off          shutdown -P now		init 0
+halt                  shutdown -H now
+reboot              shutdown -r now		init 6
+
+시간정보확인
+date
+timedatectl
+
+시간 변경하기
+timedatectl set-ntp false
+timedatectl set-time "2022-07-07 22:43:30"
+
+명령창썻던거 다나옴
+history
+
+히스토리에서 재실행하는방법
+!12(히스토리번호)
+
+히스토리 삭제
+history -d 12(히스토리번호)
+
+히스토리가장최근거 실행
+!!
+
+히스토리전체삭제
+history -c
+
