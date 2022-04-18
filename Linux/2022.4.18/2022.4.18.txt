@@ -85,7 +85,7 @@ find / -perm -4000 -print
 sudo find /etc -name services -exec file {} \; -exec wc {} \;
 
 
-grep PATTERNS [FILE...]
+grep PATTERNS [FILE...] :grep 파일만 찾는다
 grep kang /etc/passwd /etc/group
 grep -h kang /etc/passwd /etc/group: 파일명 출력안함
 grep -n kang /etc/passwd /etc/group : 라인번호출력
@@ -112,6 +112,10 @@ echo "Appended test" ) >> redirection.txt  : A >> File(echo를 redirection.txt�
 pipe : 두명령어를 연결해주면서 앞에서 실행한 명령의 연결 값을 뒤에 적은 명령의 입력으로 사용
 ls -l /etc | more
 
+U : user
+G : group
+O : other
+a = rwx
 
 chmod : 파일,디렉토리의 권한을 변경
 (chmod$ chmod u=rwx,g=rx,o=r file1.txt)
