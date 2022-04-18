@@ -38,8 +38,8 @@ ls -l : 목록 자세히 (d로 시작은 디렉토리, -는 파일, b는 블록�
 ls -d : 디렉토리 확인
 ls -x : 가로로 출력
 ls -R : 다출력
-ls -t
-ls -r
+ls -t : 최종수정시간을 기준으로 표시
+ls -r : 항목들을 역순으로 표시
 
 mkdir : 디렉토리 생성
 rmdir : 디렉토리 삭제
@@ -55,7 +55,7 @@ su : user변경하기
 
 
 cp : 파일복사하기
-cp test.txt test1.txt
+cp test.txt      test1.txt
     카피할대상 카피명
 cp -v : 변경사실보여줌
 cp -b : 백업본 생성
@@ -95,10 +95,10 @@ tail -f : 파일이 추가될때마다 log변경되는거 출력
 
 
 
-심볼링크 sec
+심볼릭링크
 ln -s game1 game : game -> game1(연결할때)
 ln -sf game3 game : game -> game3 (변경할때)
-
+ln -rm game3(삭제할때)
 
 
 redirection
@@ -109,14 +109,23 @@ echo "Appended test" ) >> redirection.txt  : A >> File(echo를 redirection.txt�
 
 
 
-pipe
+pipe : 두명령어를 연결해주면서 앞에서 실행한 명령의 연결 값을 뒤에 적은 명령의 입력으로 사용
 ls -l /etc | more
 
 
 chmod : 파일,디렉토리의 권한을 변경
+(chmod$ chmod u=rwx,g=rx,o=r file1.txt)
+
+특정 권한 추가/제거
+User의 execute 권한만 빼고 싶다면 간단히 u-x를 사용하면 됩니다. 
+다른 권한들은 건드리지 않고 user의 x권한만 뺀다는(-) 의미입니다
 chmod u-w hello.txt
 chmod g+x hello.txt
 chmod u+w,g-w hello.txt
+
+숫자로 변경
+chmod 777 hello.txt (4는 read, 2는 write, 1는 execute)
+
 
 umask : 파일이나 디렉터리 생성시 초기접근권한을 설정할때 사용
 초기 파일은 666, 디렉터리는 777
