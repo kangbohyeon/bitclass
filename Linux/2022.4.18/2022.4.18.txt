@@ -1,0 +1,133 @@
+date
+timedatectl
+history
+man : 메뉴얼
+
+logname
+whoami
+id
+
+users
+who
+w
+
+cal : 캘린더
+clear, ctrl+l : 터미널창 정리
+
+uname : 시스템에 대한 정보
+uname -a
+hostname : 컴퓨터이름
+
+hostnamectl set-hostname : 컴퓨터 이름 바꾸기
+arch : 아키텍쳐 정보
+
+
+env : 환경변수
+echo : print
+which : 명령어위치또는 디렉토리를 찾을때
+whatis ls : ls에 대한 명령어 설명
+sleep : 재워놓기
+source
+
+cd ../../usr : 상대경로
+cd/home/user : 절대경로
+
+stat test.txt : 자세히 보기
+ls : 목록들 확인
+ls -l : 목록 자세히 (d로 시작은 디렉토리, -는 파일, b는 블록디바이스(하드디스크), c는 캐릭터디바이스(마우스,키보드), l은 링크 s는 소켓, l은 심볼링크) 
+ls -d : 디렉토리 확인
+ls -x : 가로로 출력
+ls -R : 다출력
+ls -t
+ls -r
+
+mkdir : 디렉토리 생성
+rmdir : 디렉토리 삭제
+touch : 파일생성
+touch -t 205508151023 sample.txt : 최종시간변경하기
+touch workspace/sample.txt : workspace디렉토리에서 sample.txt생성
+rm : 파일 삭제
+rm -r : 디렉토리 파일이 있어도 삭제가능
+
+
+su : user변경하기
+
+
+
+cp : 파일복사하기
+cp test.txt test1.txt
+    카피할대상 카피명
+cp -v : 변경사실보여줌
+cp -b : 백업본 생성
+cp -r : 디렉토리 복사
+
+file : 파일타입확인
+cat : 파일 내용 출력 여러개 붙여서 나열 가능
+cat -n services : 줄번호보임
+head : 위에 줄표시
+tail : 마지막 10줄표시
+more : b키로 앞으로 넘어가기 , space 로 뒤로 넘어가기
+less : b키로 앞으로 넘어가기 , space 로 뒤로 넘어가기
+less -N : 줄번호보임
+
+mv : 파일이동
+mv test.txt test001.txt ( 파일명바꾸기)
+wc : 개수확인
+
+
+
+find /etc -name services  : etc위치에서 services파일찾기
+      위치	           찾고자하는 파일명
+find /etc -name services -ls : 자세히 표시
+find / -uid 1001 -print : 유저아이디로 찾기
+find / -size +30000k :30mb이상사이즈만 찾기
+find / -perm -4000 -print
+sudo find /etc -name services -exec file {} \; -exec wc {} \;
+
+
+grep PATTERNS [FILE...]
+grep kang /etc/passwd /etc/group
+grep -h kang /etc/passwd /etc/group: 파일명 출력안함
+grep -n kang /etc/passwd /etc/group : 라인번호출력
+grep -n 'e$' /etc/group : group그룹에서 e로 끝나는거 출력
+
+tail -f : 파일이 추가될때마다 log변경되는거 출력
+
+
+
+심볼링크 sec
+ln -s game1 game : game -> game1(연결할때)
+ln -sf game3 game : game -> game3 (변경할때)
+
+
+
+redirection
+(date && errorcommand) > redirection.txt   : A > File(오류안난 date만 redirection로 저장)
+(date && errorcommand) 2> redirection.txt  : A n> File(errorcommand를 redirection.txt에 저장)
+(date && errorcommand) &> redirection.txt  : A &> File(date와 errorcommand를 redirection.txt에 저장)
+echo "Appended test" ) >> redirection.txt  : A >> File(echo를 redirection.txt에 저장)
+
+
+
+pipe
+ls -l /etc | more
+
+
+chmod : 파일,디렉토리의 권한을 변경
+chmod u-w hello.txt
+chmod g+x hello.txt
+chmod u+w,g-w hello.txt
+
+umask : 파일이나 디렉터리 생성시 초기접근권한을 설정할때 사용
+초기 파일은 666, 디렉터리는 777
+
+
+슈퍼유저에서 변경
+chown kang workspace
+chown -R kang workspace : 하위파일까지 권한변경
+chgrp kang workspace
+chgrp -R kang workspace : 하위파일까지 그룹변경
+
+
+
+nano hello.txt : hello 파일편집
