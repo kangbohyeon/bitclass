@@ -146,7 +146,7 @@ tail /etc/passwd : user확인하기
 
 
 (root/home에서 실행)
-usermod -d /home/tom -l james user02 : user02를 james로 이름 변경
+usermod -d /home/tom -l james user02 : user02를 james로 이름 변경, home에 tom디렉토리로 연결
 usermod -u 2003 master : master계정의 uid를 2003으로 변경
 groupmod -n james user02 : 그룹이름 변경
 chage -E 2030/12/31/ user01 : user01 만료일 바꾸기
@@ -196,3 +196,14 @@ mkdir user0001
 chown -R user0001:user0001 user0001
 mkdir workspace
 usermod -d /game user0001 
+
+chown -R kang workspace : kang 계정의 workspace디렉토리를 하위파일까지 변경할수잇게 uid 변경
+chgrp -R kang workspace : kang 계정의 workspace디렉토리를 하위파일까지변경할수잇게 gid 변경
+groupmod -n james user02 : 그룹이름 변경
+usermod -u 2003 master : master계정의 uid를 2003으로 변경
+usermod -l manager master : master을 manager로 변경
+userdel -r user03 : user지우기및 디렉토리까지 삭제
+chage -E 2030/12/31/ user01 : user01 만료일 바꾸기
+chage -l user01 : user01 정보암호확인
+chage -n 1 user01 : user01 최소날수 1로변경
+chage -M 10 user01 : user01 최대날수 10로 변경
