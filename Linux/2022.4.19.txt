@@ -124,9 +124,9 @@ dgg : 커서잇는 페이지부터 위를 삭제
 
 
 sudo -i 
-useradd -m user01 : user01사용자를 디렉토리및 권한까지 추가
+useradd -m user01 : user01사용자를 디렉토리생성및 권한까지 추가
 useradd -m -s /bin/bash user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가
-useradd -m -s /bin/bash -d /home/game user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가, 디렉토리 game추가
+useradd -m -s /bin/bash -d /home/game user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가, 홈디렉토리를 game으로 추가및연결
 
 useradd user01 : user01사용자를 추가
 passwd user01 : user01비번 지정
@@ -137,7 +137,7 @@ exit
 
 cd /home(root에서 실행)
 mkdir user01
-chown -R user01:user01 user01
+chown -R user01:user01 user01 : 
 
 (root/home에서 실행)
 userdel user03 : user지우기
@@ -185,3 +185,14 @@ grep "bin/bash" /etc/passwd | cut -d ':' -f1 : /etc/passwd/에 있는 bin/bash�
  
 
 
+useradd -m user0001의 역할 :
+useradd user0001
+mkdir user0001
+chown -R user0001:user0001 user0001
+
+useradd -m -d /home/game user01 역할:
+useradd user0001
+mkdir user0001
+chown -R user0001:user0001 user0001
+mkdir workspace
+usermod -d /game user0001 
