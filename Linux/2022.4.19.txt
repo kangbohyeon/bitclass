@@ -1,0 +1,187 @@
+터미널 텍스트편집기 실행
+gedit & 
+
+
+nano 편집기
+nano mylife.txt
+
+
+vi editer
+명령모드
+한글자 또는 두글자 명령을 사용
+커서를 이동하거나 글자를 삭제또는 교체등의 문서 편집기능 제공
+명령이 아닌 키보드 입력은 모두 에러로 처리
+
+입력모드
+입력을 원하는 글자를 입력
+화면은 입력한 상태 그대로 사용자에게 제공
+
+라인모드
+esc를 누르고 : 프롬프트에서 명령을 입력
+편집,검색,저장 등 다양한 기능을 제공
+
+
+
+
+터미널 : vi에디터 실행
+명령모드 : 검색및 편집
+입력모드 : 문서작성
+라인모드 : 저장,종료,취소
+종료 : vi에디터종료
+터미널 -> 명령모드(a or i) ->입력모드(esc) -> 명령모드
+	 명령모드(콜론:)   -> 라인모드(esc or enter)->명령모드-> 라인모드(:wq) ->종료
+
+라인모드일때 
+콜론(:) -> q!(저장안될을때 강제종료)
+콜론(:) -> w(쓰기를 저장)
+콜론(:) -> q(나가기)
+
+vimtutor(튜토리얼복사후 저장)
+:w vimtutor.txt
+
+명령모드) vi안에서 커서이동방법
+l키가 오른쪽
+h가 왼쪽
+k가 위
+j가 아래
+
+입력모드) vi 안에서 라인넘버보이기
+:set nu
+
+명령모드) 
+a: 커서기준뒤에 입력
+i: 커서기준 앞에 입력
+o: 커서기준 다음줄생긴후 입력
+s: 커서기준 한글자삭제후 입력
+I: 커서기준 라인맨앞에 입력
+A: 커서기준 라인맨뒤에 입력
+O: 커서기준 윗줄생긴후 입력
+S: 커서기준라인 삭제후 입력
+3S: 커서기준3단어 삭제후 입력
+R: 커서기준한글자 대체
+cw : 커서기준한단어 삭제후 입력
+3cw : 커서기준3글자 삭제후 입력
+x: 커서기준한글자 삭제후 입력
+3x : 커서기준3글자 삭제후 입력
+
+컨트롤 + f : 한페이지아래
+컨트롤 + b : 한페이지위
+컨트롤 + d : 반페이지아래
+컨트롤 + u : 반페이지위
+컨트롤 + y : 스크롤 위
+컨트롤 + e : 스크롤 아래
+
+gg : 페이지맨위
+G : 페이지맨아래
+숫자 + G : 라인숫자로 이동
+$ : 라인에서 맨마지막으로 이동
+^ : 라인에서 맨앞으로 이동
+0 : 라인에서 첫컬럼으로 이동
+w : 앞단어로 기준 뒤로 이동
+b : 단어단위로 앞으로 이동
+e : 뒷단어 기준으로 이동
+D : 커서기준으로 뒤를 삭제
+dd : 라인삭제(컨트롤 +x랑 같이 동작)
+u(undo) : 컨트롤 +z 랑같이 동작, 되돌리기
+p or P : 라인붙여넣기
+Y or yy : 라인복사
+숫자 + yy : 숫자만큼 라인복사
+
+d^ : 커서기준 앞에 삭제
+d$ : 커서기준 뒤를 삭제
+d0 : 커서기준 컬럼앞까지 삭제
+dw : 한단어 삭제
+dG : 커서잇는 페이지부터 아래를 삭제
+dgg : 커서잇는 페이지부터 위를 삭제
+3dw : 3단어 삭제
+4yw : 4단어 복사
+
+
+
+라인모드)
+:숫자 -> 숫자로 이동
+:300 -> 300번째줄로 이동
+:1,3d -> 1~3줄 삭제
+:u -> 되돌리기
+. -> 현재커서위치
+, -> 범위지정할때
+:%d -> 파일전체삭제
+:e! : 저장하기전파일을 불러옴
+/단어 +enter : 단어를 정방향으로 찾아줌( n : next, N: before)
+?단어 + enter : 단어를 역방향 찾아줌
+바꿀문장에서 치환하기: s/길잡이에서/문서에서/
+			대상	바꿀거
+
+		    :%s/설명할/모르겟음/
+		    :%s/문자열1/문자열2 -> 문자열1을 문자열2로 첫번째만치환
+ 		    :%s/문자열1/문자열2/g -> 같은라인에서 매칭되는걸 모든걸 치환
+		    :1,$s/문자열1/문자열2/g -> 1~마지막까지 문자열1을 문자열2로 전부치환
+		    :1,100s/문자열1/문자열2/g -> 1~100번째줄을 문자열1을 문자열2로치환
+		    :1,$s/문자열1/문자열2/gc -> 문자열1을 문자열2로바꿀지 안바꿀지 물어봄
+
+찾고자하는 단어위에 커서를 두고 * -> n누르면 다음, N누르면 앞으로
+
+
+
+sudo -i 
+useradd -m user01 : user01사용자를 디렉토리및 권한까지 추가
+useradd -m -s /bin/bash user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가
+useradd -m -s /bin/bash -d /home/game user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가, 디렉토리 game추가
+
+useradd user01 : user01사용자를 추가
+passwd user01 : user01비번 지정
+su - user01
+chsh(user01에서 실행)
+/bin/bash
+exit
+
+cd /home(root에서 실행)
+mkdir user01
+chown -R user01:user01 user01
+
+(root/home에서 실행)
+userdel user03 : user지우기
+userdel -r user03 : user지우기및 디렉토리까지 삭제
+tail /etc/passwd : user확인하기
+
+
+(root/home에서 실행)
+usermod -d /home/tom -l james user02 : user02를 james로 이름 변경
+usermod -u 2003 master : master계정의 uid를 2003으로 변경
+groupmod -n james user02 : 그룹이름 변경
+chage -E 2030/12/31/ user01 : user01 만료일 바꾸기
+chage -l user01 : user01 정보암호확인
+chage -n 1 user01 : user01 최소날수 1로변경
+chage -M 10 user01 : user01 최대날수 10로 변경
+
+1. usermod -u 2003 master : master계정의 uid를 2003으로 변경
+2. tail /etc/passwd
+3. usermod -m -d /workspace_06 master :홈디렉터를 workspace_06으로 변경
+4. grep master /etc/passwd : grep로 master 확인
+5. usermod -l manager master : master을 manager로 변경
+6. grep manager /etc/passwd : grep로 manager확인
+
+1.
+2. chage -l manager : 설정된 암호정보 확인
+3. chage -E 2030/05/05 manager : 계정사용 만료일자 변경
+4. chage -l manager : 설정된 암호정보 확인
+5. chage -M 30 manager : 계정의 설정된 암호를 최대 30일까지 사용할수 있도록 변경
+6. chage -l manager : 설정된 암호정보 확인
+
+
+ctrl + z 확인하기 : jobs
+background 을 foreground 옮기기 : fg %1
+foreground 을 background 옮기기 : bg %1
+
+
+adduser user01 : 이름,방번호,직장번호,집번호 ,기타입력
+
+
+deluser user03 : user03 삭제(디렉토리는 남음)
+
+deluser user02 --remove-home user02 : user02 삭제(디렉토리까지 삭제)
+
+grep "bin/bash" /etc/passwd | cut -d ':' -f1 : /etc/passwd/에 있는 bin/bash를 ':'기준으로 자르고 f1칸에 있는거 출력
+ 
+
+

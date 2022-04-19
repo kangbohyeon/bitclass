@@ -3,11 +3,13 @@ timedatectl
 history
 man : 메뉴얼
 
-logname
+한사람의 정보들
+logname 
 whoami
 id
 
-users
+컴퓨터 접속한계정들 정보
+users 
 who
 w
 
@@ -27,7 +29,8 @@ echo : print
 which : 명령어위치또는 디렉토리를 찾을때
 whatis ls : ls에 대한 명령어 설명
 sleep : 재워놓기
-source
+finger :  사용자 계정 정보와 최근 로그인 정보, 이메일, 예약 작업 정보 등을 볼 수 있는 명령어
+source : 변경햇을때 로그인안하고 바로 사용
 
 cd ../../usr : 상대경로
 cd/home/user : 절대경로
@@ -40,6 +43,8 @@ ls -x : 가로로 출력
 ls -R : 다출력
 ls -t : 최종수정시간을 기준으로 표시
 ls -r : 항목들을 역순으로 표시
+ls -L : 일반파일로 취급하여 리스트 출력
+
 
 mkdir : 디렉토리 생성
 rmdir : 디렉토리 삭제
@@ -66,7 +71,7 @@ cat : 파일 내용 출력 여러개 붙여서 나열 가능
 cat -n services : 줄번호보임
 head : 위에 줄표시
 tail : 마지막 10줄표시
-more : b키로 앞으로 넘어가기 , space 로 뒤로 넘어가기
+more :페이지단위,  space 로 뒤로 넘어가기
 less : b키로 앞으로 넘어가기 , space 로 뒤로 넘어가기
 less -N : 줄번호보임
 
@@ -96,12 +101,12 @@ tail -f : 파일이 추가될때마다 log변경되는거 출력
 
 
 심볼릭링크
-ln -s game1 game : game -> game1(연결할때)
+ln -s game1 game : game -> game1(연결할때)(싱클링크)
 ln -sf game3 game : game -> game3 (변경할때)
 ln -rm game3(삭제할때)
 
 
-redirection
+redirection(1이 true , 2이 false)
 (date && errorcommand) > redirection.txt   : A > File(오류안난 date만 redirection로 저장)
 (date && errorcommand) 2> redirection.txt  : A n> File(errorcommand를 redirection.txt에 저장)
 (date && errorcommand) &> redirection.txt  : A &> File(date와 errorcommand를 redirection.txt에 저장)
