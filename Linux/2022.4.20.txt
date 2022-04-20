@@ -1,0 +1,152 @@
+useradd <->  adduser
+userdel  <->  deluser
+usermod
+
+passwd
+chsh
+chage
+
+
+그룹생성 명령어
+groupadd : 그룹생성
+groupdel : 그룹삭제
+groupmod : 그룹변경
+groupadd -g 2033 team3 : team3 gid 200으로 변경
+
+gpasswd  : 그룹비밀번호설정
+gpasswd  team1 : team1에 비번설정
+
+gpasswd -r : 그룹비번 삭제
+gpasswd -r team1 : 그룹1 비번 삭제
+
+gpasswd -a : 그룹에 사용자 추가
+gpasswd -a user01 team1 : 그룹에 user01을 team01에 추가
+
+gpasswd -d : 그룹에 사용자 삭제
+gpasswd -d user01 team1 : user01을 team01에서 그룹제거
+
+gpasswd -A : 관리자 등록
+gpasswd -A user01 team1 : team1의 관리자를 user01로 등록
+tail /etc/gshadow 에서 확인하면 확인가능
+team2 ::: user02,user03,user04,user01 -> team2 :::user01:user02,user03,user04,user01
+
+gpasswd -A '' team1 : team1의 관리자를 삭제
+
+usermod -G team2 user04 : user04가 team1에 있었는데 team2로 완전이동
+usermod -G '' user04 : user04의 보조그룹 삭제
+
+
+
+
+파일시스템
+
+파일시스템이란 하드디스크, DVD, USB등과 같은 저장매체에 데이터를 저장하거나 삭제 또는 검색하는 방법을 제어하기 위한시스템
+
+XFS파일 시스템은 RHEL8과 CentOS8에서 사용되고 있는 기본파일 시스템으로 높은 확장성과 고성능을 지원하는 64bit파일 시스템
+
+저널링(journaling)기능은 파일시스템에 변경사항을 반영하기 전에 저널 안에 변경사항을 기록하고 추적하는 기능을 수행
+
+
+가상파일시스템
+표준 유닉스 파일시스템과 관련된 모든시스템호출을 처리하는 커널
+
+
+
+가상환경에서 usb클릭해서
+general usb flash disk
+
+
+디스크정보확인
+fdisk -l
+lsblk -f
+
+
+fdisk /dev/sdb : fdisk의 sdb로 들어감
+d : 전체삭제
+n : 파티션 1개만들기
+first sector 은 디폴트로 건들지말기
+last sector에 용량할당
+p : 파티션정보확인
+t : 파티션타입변경
+fd : 파티션 raid auto로 변경
+w : 저장
+mkfs.ext4 /dev/sdb1 : 포멧바로하기
+
+cd /mnt 로가서 mkdir usb1 디렉토리 생성
+cd usb1 으로 가서 echo hello usb > readme.txt
+cat readme.txt
+
+
+mount /dev/sdb1 /mnt/usb :마운트 하기(폴더들어가는개념)
+umount /mnt/usb : umount개념
+
+
+자동 마운트시키기
+vi /etc/fstab
+명령모드에서 yy후 p로 복사 -> i
+/dev/sdb1    /mnt/disk1       vfat   defaults    0      0
+/dev/sdb2    /mnt/disk2       ext3   defaults    0      0
+/dev/sdb3    /mnt/disk3       ext4   defaults    0      0
+
+
+
+raid 만들기
+apt install mdadm으로 raid 에 대한 패키지 설치
+mdadm --create /dev/md9 --level=linear --raid-device=2 /dev/sdb1 /dev/sdc1 : sdb 랑 sdc랑 linear연결
+mdadm --detail --scan : 정보확인
+mkfs.ext4 /dev/md9 : 포멧하기
+mkdir /mnt/raidlinear : mnt에 raidlinear 디렉토리 만들기
+mount /dev/md9 / mnt/raidlinear : mnt에 raidlinear 마운트하기
+
+
+
+mdadm --create /dev/md0 --level=0 --raid-device=2 /dev/sdd1 /dev/sde1 : sdd 랑 sde랑 raid0로연결
+mdadm --detail --scan : 정보확인
+mkfs.ext4 /dev/md0 : 포멧하기
+mkdir /mnt/raid0 : mnt에 raid0 디렉토리 만들기
+mount /dev/md0 / mnt/raid0 : mnt에 raid0 마운트하기
+
+
+mdadm --create /dev/md1 --level=1 --raid-device=2 /dev/sdf1 /dev/sdg1 : sdf 랑 sdg랑 raid1로연결
+mdadm --detail --scan : 정보확인
+mkfs.ext4 /dev/md1 : 포멧하기
+mkdir /mnt/raid1 : mnt에 raid1 디렉토리 만들기
+mount /dev/md1 / mnt/raid1 : mnt에 raid1 마운트하기
+
+mdadm --create /dev/md5 --level=5 --raid-device=3 /dev/sdh1 /dev/sdi1 /dev/sdj1 : sdh 랑 sdi랑 sdj랑 raid5로연결 
+mdadm --detail --scan : 정보확인
+mkfs.ext4 /dev/md5 : 포멧하기
+mkdir /mnt/raid5 : mnt에 raid1 디렉토리 만들기
+mount /dev/md5 / mnt/raid5 : mnt에 raid5 마운트하기
+df : 정보확인
+
+
+raid 자동 마운트시키기
+vi /etc/fstab
+명령모드에서 yy후 p로 복사 -> i
+/dev/md/orange:0    /mnt/raid0       ext4   defaults    0      0
+/dev/md/orange:1    /mnt/raid1       ext4   defaults    0      0
+/dev/md/orange:5    /mnt/raid5       ext4   defaults    0      0
+/dev/md/orange:9    /mnt/raidlinear       ext4   defaults    0      0
+reboot
+
+
+
+uuid 셋팅찾기
+blkid /dev/md125
+
+공유파일쓰기
+sudo mkdir /mnt/share
+
+sudo mount -t vboxsf share /mnt/share
+	     vbos의 sharvhfej/리눅스의 share
+cd /mnt/share/
+ls
+
+
+
+
+
+
+
+
