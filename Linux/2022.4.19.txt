@@ -126,6 +126,7 @@ dgg : 커서잇는 페이지부터 위를 삭제
 sudo -i 
 useradd -m user01 : user01사용자를 디렉토리생성및 권한까지 추가
 useradd -m -s /bin/bash user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가
+bin/bash를 사용하면 유저명 + 키보드까지 사용가능
 useradd -m -s /bin/bash -d /home/game user01 : user01사용자를 디렉토리및 권한까지 추가, bin/bish추가, 홈디렉토리를 game으로 추가및연결
 
 useradd user01 : user01사용자를 추가
@@ -187,7 +188,7 @@ grep "bin/bash" /etc/passwd | cut -d ':' -f1 : /etc/passwd/에 있는 bin/bash�
 
 useradd -m user0001의 역할 :
 useradd user0001
-mkdir user0001
+mkdir /home/user0001
 chown -R user0001:user0001 user0001
 
 useradd -m -d /home/game user01 역할:
@@ -203,7 +204,9 @@ groupmod -n james user02 : 그룹이름 변경
 usermod -u 2003 master : master계정의 uid를 2003으로 변경
 usermod -l manager master : master을 manager로 변경
 userdel -r user03 : user지우기및 디렉토리까지 삭제
-chage -E 2030/12/31/ user01 : user01 만료일 바꾸기
+chage -E 2030/12/31 user01 : user01 만료일 바꾸기
 chage -l user01 : user01 정보암호확인
 chage -n 1 user01 : user01 최소날수 1로변경
 chage -M 10 user01 : user01 최대날수 10로 변경
+
+사용자이름 : 비번 : uid : gid :개인정보: 홈정보 : shall

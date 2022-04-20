@@ -11,7 +11,7 @@ chage
 groupadd : 그룹생성
 groupdel : 그룹삭제
 groupmod : 그룹변경
-groupadd -g 2033 team3 : team3 gid 200으로 변경
+groupadd -g 2033 team3 : team3를  gid 2003으로 지정변경
 
 gpasswd  : 그룹비밀번호설정
 gpasswd  team1 : team1에 비번설정
@@ -35,6 +35,7 @@ gpasswd -A '' team1 : team1의 관리자를 삭제
 usermod -G team2 user04 : user04가 team1에 있었는데 team2로 완전이동
 usermod -G '' user04 : user04의 보조그룹 삭제
 
+유저로 로그인후 newgrp 그룹명 하면 그룹에 가입
 
 
 
@@ -67,8 +68,6 @@ n : 파티션 1개만들기
 first sector 은 디폴트로 건들지말기
 last sector에 용량할당
 p : 파티션정보확인
-t : 파티션타입변경
-fd : 파티션 raid auto로 변경
 w : 저장
 mkfs.ext4 /dev/sdb1 : 포멧바로하기
 
@@ -91,6 +90,25 @@ vi /etc/fstab
 
 
 raid 만들기
+fdisk /dev/sdb : fdisk의 sdb로 들어감
+d : 전체삭제
+n : 파티션 1개만들기
+first sector 은 디폴트로 건들지말기
+last sector에 용량할당
+p : 파티션정보확인
+t : 파티션타입변경
+fd : 파티션 raid auto로 변경
+w : 저장
+mkfs.ext4 /dev/sdb1 : 포멧바로하기
+
+cd /mnt 로가서 mkdir usb1 디렉토리 생성
+cd usb1 으로 가서 echo hello usb > readme.txt
+cat readme.txt
+
+
+
+
+
 apt install mdadm으로 raid 에 대한 패키지 설치
 mdadm --create /dev/md9 --level=linear --raid-device=2 /dev/sdb1 /dev/sdc1 : sdb 랑 sdc랑 linear연결
 mdadm --detail --scan : 정보확인
@@ -139,7 +157,8 @@ blkid /dev/md125
 sudo mkdir /mnt/share
 
 sudo mount -t vboxsf share /mnt/share
-	     vbos의 sharvhfej/리눅스의 share
+	     vbos의 shar파일/리눅스의 share  : 리눅스 폴더명 과 윈도우 폴더명은 같게 맞춰줘야한다
+
 cd /mnt/share/
 ls
 
