@@ -35,7 +35,7 @@ gpasswd -A '' team1 : team1의 관리자를 삭제
 usermod -G team2 user04 : user04가 team1에 있었는데 team2로 완전이동
 usermod -G '' user04 : user04의 보조그룹 삭제
 
-유저로 로그인후 newgrp 그룹명 하면 그룹에 가입
+유저로 로그인후 'newgrp 그룹명' 하면 그룹에 가입
 
 
 
@@ -107,9 +107,8 @@ cat readme.txt
 
 
 
-
-
 apt install mdadm으로 raid 에 대한 패키지 설치
+
 mdadm --create /dev/md9 --level=linear --raid-device=2 /dev/sdb1 /dev/sdc1 : sdb 랑 sdc랑 linear연결
 mdadm --detail --scan : 정보확인
 mkfs.ext4 /dev/md9 : 포멧하기
@@ -164,6 +163,8 @@ ls
 
 
 
+파티션단위 : df
+디렉토리단위 : du
 
 
 

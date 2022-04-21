@@ -106,7 +106,7 @@ ln -sf game3 game : game -> game3 (변경할때)
 ln -rm game3(삭제할때)
 
 
-redirection(1이 true , 2이 false)
+redirection(1이 true , 2이 false, defalut = 1)
 (date && errorcommand) > redirection.txt   : A > File(오류안난 date만 redirection로 저장)
 (date && errorcommand) 2> redirection.txt  : A n> File(errorcommand를 redirection.txt에 저장)
 (date && errorcommand) &> redirection.txt  : A &> File(date와 errorcommand를 redirection.txt에 저장)
@@ -126,7 +126,7 @@ chmod : 파일,디렉토리의 권한을 변경
 (chmod$ chmod u=rwx,g=rx,o=r file1.txt)
 
 특정 권한 추가/제거
-User의 execute 권한만 빼고 싶다면 간단히 u-x를 사용하면 됩니다. 
+User의 실행 권한만 빼고 싶다면 간단히 u-x를 사용하면 됩니다. 
 다른 권한들은 건드리지 않고 user의 x권한만 뺀다는(-) 의미입니다
 chmod u-w hello.txt
 chmod g+x hello.txt
@@ -142,9 +142,9 @@ umask : 파일이나 디렉터리 생성시 초기접근권한을 설정할때 �
 
 슈퍼유저에서 변경
 chown kang workspace
-chown -R kang workspace : 하위파일까지 권한변경
+chown -R kang workspace : 하위파일까지 uid권한변경
 chgrp kang workspace
-chgrp -R kang workspace : 하위파일까지 그룹변경
+chgrp -R kang workspace : 하위파일까지 gid 그룹변경
 
 
 

@@ -1,0 +1,170 @@
+mdadm --run /dev/md126 : raid 1,5망가졋고 안망가진디스크만 raid에서 살릴때
+mount /dev/md126  /mnt/raid1
+df
+mdadm --detail /dev/md126 : md126에 대한  마운트정보확인
+mdadm --stop /dev/md124 : 망가진 md124삭제
+
+디스크 다시 만들어서 raid로 설정변경후 add로 raid연결
+
+
+마운트대신 편리하게 연결
+mdadm /dev/md/orange:\1 --add /dev/sdg1
+mdadm /dev/md/orange:\5 --add /dev/sdi1
+
+
+
+raid 1 ,5는 살릴수있음
+9, 0 중지
+
+
+
+
+sudo dpkg -i gooele
+dpkg -i galculator.deb : 설치
+dpkg -r galculator : 제거
+dpkg -P galculator:폴더까지 제거
+dpkg -l : 설치리스트 확인
+dpkg -L vim : vim패키지 설치리스틑 확인
+dpkg -l | grep vim :  vim패키지 설치됫늕 확인
+
+apt-get update
+apt-get upgrade
+apt-cache 
+
+
+apt update
+apt upgrade
+apt list
+apt full-upgrade : 우분트 업데이트까지
+apt install vim
+apt remove vim : 패키지만 삭제
+apt pruge vim : 설정까지 삭제
+
+
+
+isoimage 만드는거
+genisoimage -r : 8글자 이상 파일이름 지정할때
+	     -J : 윈도우에서 64bit 유니코드 이름허용
+	     -o : 출력할 파일이름
+
+
+genisoimage -r -J -o my_test.iso /boot  : 
+sudo mkdir /media/isodir :media isodir 디렉토리 만들기
+sudo mount -o loop my_test.iso /media/isodir : isodir 마운트시키기
+
+
+
+파일 압축 및 해제 : 파일1개만 압축가능
+
+xz 파일명 : 파일 압축
+xz -d 파일명.xz : 파일 압축해제
+xz -l 파일명.xz : 파일 압축정보
+xz -k 파일명.xz : 파일 압축및 보존
+
+bzip2 파일명
+bzip2 -d 파일명.bz2
+bzip2 -k 파일명.bz2
+
+gzip 파일명
+gzip -d 파일명.gz
+
+zip 바꿀파일명.zip 파일명
+unzip 바꿀파일명.zip
+
+
+파일 묶기 및 풀기
+tar cvf 타르명.tar 파일명1 파일명2 :묶기
+tar tvf 타르명.tar : 확인하기 
+tar xvf 타르명.tar : 풀기 
+tar xvf my.tar -C ~/Documnents : my.tar을 documnents 로 풀기
+tar Jcvf 저장할파일명.tar.xz ~/디렉토리명 : 타르를 xz로 묶기
+tar zcvf 저장할파일명.tar.gz ~/디렉토리명 : 타르를 gzip으로 묵기
+tar jcvf 저장할파일명.tar.bz2 ~/디렉토리명 : 타르를 bzip로 묶기
+
+
+메모리에 로딩되면 프로세스
+
+ps
+ps -e :  현재돌아가고잇는 모든 프로세스 표시 
+ps -ef : 현재돌아가고잇는 모든 프로세스 표시 
+
+top : cpu 사용보기
+
+
+sudo apt install openssh-server : ssh server 서버 설치 
+systemctl status 서버명 : 서버 실행 상태보기
+systemctl status ssh.service
+
+systemctl stop 서버명 : 서버 중지
+systemctl stop ssh.service 
+
+systemctl reload 서버명 : 서버 재실행
+systemctl reload ssh.service 
+systemctl restart 서버명 : 서버 재시작
+systemctl restart ssh.service 
+
+systemctl disable 서버명 : 부팅될때 서버실행안함
+systemctl disable ssh.service 
+systemctl unable 서버명 : 부팅될때 서버실행함
+systemctl unable ssh.service 
+
+
+
+systemctl isolate multi-user.target
+
+kang
+qwert
+
+systemctl graphic.target
+
+
+다른 터미널 들어가기
+ssh 사용자이름@ip주소 : ssh kang@192.168.0.125
+yes
+들어가는 pwd 입력
+
+
+밖에서 해당 ip로 파일복사
+scp 폴더나파일명 컴퓨터이름@ip주소:
+scp services kang@192.168.0.125:
+
+sftp ip주소 : sftp 192.168.0.125  
+ip주소의 계정 비번입력
+put 파일명 : 파일보내기
+exit : 나오기
+
+
+
+
+
+
+네트워크 설정하기
+nmcli
+nmcli g : 정보
+nmcli n : 네트워크
+nmcli n off
+nmcli d : 상태정보보기
+nmcli c = nmcli c show : 연결정보보기(network 명보기)
+
+nmcli c down '프로파일 '
+nmcli c s '프로파일 1'
+nmcli c up '프로파일 1'
+nmcli c mod '프로파일 1' ipv4.method auto : ip자동할당
+nmcli c del '프로파일 1'
+
+
+nmcli c s mod '프로파일 1' ipv4.method manual ipv4.addresses 192.168.0.125/24 ipv4.gateway 192.168.0.1 ipv4.dns 168.126.63.1
+
+
+
+
+
+vi .vimrc에서 셋팅하고싶은거 셋팅하기 : set.nu
+
+
+echo $?으로 제대로 실행되는지 확인
+
+
+
+
+

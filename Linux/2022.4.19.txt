@@ -188,6 +188,7 @@ grep "bin/bash" /etc/passwd | cut -d ':' -f1 : /etc/passwd/에 있는 bin/bash�
 
 useradd -m user0001의 역할 :
 useradd user0001
+passwd user0001 : user0001비번 지정
 mkdir /home/user0001
 chown -R user0001:user0001 user0001
 
@@ -195,8 +196,22 @@ useradd -m -d /home/game user01 역할:
 useradd user0001
 mkdir user0001
 chown -R user0001:user0001 user0001
-mkdir workspace
+mkdir game
 usermod -d /game user0001 
+mv user0001 game
+
+useradd -m -d /home/game user0001 -s /bin/bash : 
+useradd user0001
+mkdir user0001
+chown -R user0001:user0001 user0001
+mkdir game
+usermod -d /game user0001 
+mv user0001 game
+passwd user0001
+su - user0001
+chsh
+/bin/bash
+exit
 
 chown -R kang workspace : kang 계정의 workspace디렉토리를 하위파일까지 변경할수잇게 uid 변경
 chgrp -R kang workspace : kang 계정의 workspace디렉토리를 하위파일까지변경할수잇게 gid 변경
@@ -208,5 +223,9 @@ chage -E 2030/12/31 user01 : user01 만료일 바꾸기
 chage -l user01 : user01 정보암호확인
 chage -n 1 user01 : user01 최소날수 1로변경
 chage -M 10 user01 : user01 최대날수 10로 변경
+
+
+
+
 
 사용자이름 : 비번 : uid : gid :개인정보: 홈정보 : shall
