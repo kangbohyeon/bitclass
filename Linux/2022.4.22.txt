@@ -1,0 +1,116 @@
+python설치
+vi .bashrc
+alias python='python3'
+source .bashrc
+
+java설치
+sudo apt install openjdk-11-jdk
+readlink -f /usr/bin/java
+cd /etc/profile.d
+sudo vi java.sh
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+reboot
+
+텔렛 설치하기
+sudo apt install xinetd telnetd
+sudo apt install net-tools
+cd /etc/xinetd.d
+touch sudo telent
+sudo vi telent
+service telent
+{
+disable = no
+flags = REUSE
+socket_type = stream
+wait = no
+user = root
+server = /usr/sbin/in.telnetd
+log_on_failure +=USERID
+}
+
+
+
+
+mysql설치하기
+sudo apt install mysql-server
+
+sudo mysql : mysql 실행
+create user 'user01'@'%' identified by '1234';  : user01의 유저를 생산 , 1234비번설정
+create database bulletin; : bulletin 데이터베이스 생성
+grant all privileges on bulletin.* to 'user01'@'%'; : bulletin의 데이터베이스를 user01한테 모든권한 부여
+show grants for 'user01' : user01에대한 권한 검색
+exit
+
+mysql -u user01 -p
+비밀번호
+use bulletin
+테이블만들기
+
+외부 ip허용하기
+cd /etc/
+cd mysql/
+cd mysql.conf.d/
+sudo vi mysqld.cnf
+bind-address = 127.0.0.1 주석처리 (외부ip허용)
+:wq
+systemctl restart mysql.service
+
+
+workbench에서
+connection name : user01
+hostname : 192.168.0.125
+
+
+아파치 설치하기
+sudo apt install apache2
+
+cd /var/www/html
+sudo mv index.html index.html.org
+sudo vi index.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>linux study</title>
+</head>
+<body>
+<h1>HELLo Linux</h1>
+</body>
+</html>
+
+
+php설치하기와 html연동하기 
+sudo apt install php php-mysql
+cd /var/www/html/
+sudo vi phpinfo.php
+<?php
+phpinfo()
+?>
+
+php와 mysql연동하기
+cd /etc/php/7.4/apache2
+sudo vi php.ini
+:set nu
+:926
+extension=mysqli로 설정
+systemctl restart apache2.service
+
+
+cd/var/www/html/
+sudo vi phpmysql.php
+
+<?php
+$host = "192.168.0.125";
+$user="user01";
+$pw = "1234";
+$dbName = "bulletin";
+$conn = new mysqli($host,$user,$pw,$dbName);
+if($conn){echo "connection established","<br>";}
+else{die ('could not conntect: ' .mysqli_error($conn));}
+$sql="select * from user";
+$result = mysqli_query($conn,$sql);
+while($row = mysqli_fetch_array($result)){
+echo $row['name']."------".$row['profile']."<br>";
+}
+mysqli_close($conn);
+?>
