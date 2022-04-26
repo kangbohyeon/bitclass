@@ -99,17 +99,15 @@ sudo systemctl status apache2
 hdfs namenode -format
 
 유저생성
-hadoop fs -mkdir -p /user
-
-hadoop 파일시스템확인
-hadoop fs -ls /
-
-
+bin/hdfs dfs -mkdir /user
 
 서버시작
 start-dfs.sh
 start-yarn.sh
 mapred --daemon start historyserver
+
+hadoop 파일시스템확인
+hadoop fs -ls /
 
 서버스탑
 stop-dfs.sh
