@@ -20,13 +20,18 @@ source ~/.bashrc
 
 cd /usr/sbin/hadoop-3.2.3/etc/hadoop
 vi haddop-env.sh
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 
 sudo apt install ssh
+ssh localhost
 ssh-keygen -t rsa -p '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-ssh localhost
+chmod 0600 ~/.ssh/authorized_keys
+
 hdfs namenode -format
  
+
+
 start-dfs.sh
 start-yarn.sh
 mapred --daemon start historyserver
@@ -35,5 +40,17 @@ stop-dfs.sh
 stop-yarn.sh
 mapred --daemon stop historyserver
 
+
+
 adduser user01
 usermod -aG sudo user01
+
+네임노드
+http://localhost:9870
+
+리소스매니저
+http://localhost:8088
+
+히스토리 서버
+http://localhost:19888
+
