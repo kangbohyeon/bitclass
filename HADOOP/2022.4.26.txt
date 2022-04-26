@@ -99,7 +99,7 @@ sudo systemctl status apache2
 hdfs namenode -format
 
 유저생성
-bin/hdfs dfs -mkdir /user
+/usr/sbin/hadoop-3.2.3/bin/hdfs dfs -mkdir /user
 
 서버시작
 start-dfs.sh
