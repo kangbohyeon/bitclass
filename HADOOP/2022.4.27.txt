@@ -1,0 +1,15 @@
+hadoop fs -mkdir /input : input 디렉토리 만들기
+hadoop fs -mkdir /input/wex : input 디렉토리 만들기
+hadoop fs -rmr /output : output 디렉토리 삭제
+hadoop fs -ls /output/... : output 디렉토리 view
+hadoop fs -cat /output/... : ouptput 디렉토리 파일보기
+hadoop fs -copyFromLocal /input/... : input 디렉토리에 data파일 copy(리눅스에서 하둡)
+hadoop fs -copytoLocal /input/... : input 디렉토리에 data파일 copy(하둡에서 리눅스)
+hadoop fs -put * /input/ : input디렉토리안에 현재있는파일 전부다 복사
+hadoop fs -copyFromLocal ./R.txt /input : put이랑 같게 실행됨 
+
+
+
+hadoop jar target/WordCount2-1.0-SNAPSHOT.jar WordCount2/input/wex/2M.ID.CONTENTS /output/WordCount2
+hadoop jar jav위치   프로그램명 /input디렉토리명 /output디렉토리명 
+
