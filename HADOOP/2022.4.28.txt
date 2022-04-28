@@ -1,0 +1,39 @@
+hadoop web UI 포트번호
+hadoop cluster : 8088
+hadoop namenode : 9870
+hadoop datanode : 9864
+hadoop status : 9868
+hbase master status : 16010
+hbase region server : 16030
+
+
+스쿱 설치
+archive.apache.org/dist/sqoop/1.4.6
+sqoop-1.4.6.bin hadoop-0.23.tar.gz
+mkdir hadoop/app
+
+cp sqoop-1.4.6.bin hadoop-0.23.tar.gz /hadoop/app
+
+tar xvf sqoop-1.4.6.bin hadoop-0.23.tar.gz
+
+cd sqoop-1.4.6.bin hadoop-0.23/conf
+
+
+vi sqoop-env-temporary.sh
+HADOOP_COMMON_HOME=/usr/sbin/hadoop-3.2.3(하둡경로)
+HADOOP_MAPRED_HOME=/usr/sbin/hadoop-3.2.3(하둡경로)
+
+
+vi ~/.bashrc
+
+export SQOOP_HOME=/home/kang/hadoop/app/sqoop-1.4.6.bin__hadoop-0.23
+export PATH=$PATH:$SQOOP_HOME/bin
+
+source ~/.bashrc
+
+jdbc 설치
+
+sqoop import --connect  jdbc:mysql://localhost/hadoopguide 
+--username user02 
+--password 1234 
+--table widgets -m 1
