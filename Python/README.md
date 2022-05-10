@@ -1,3 +1,8 @@
+참고사이트 : 
+matplotlib -> https://matplotlib.org/stable/index.html
+
+numpy -> https://numpy.org
+
 # Python_study
 교재 : 파이썬 for Beginner
 ### 2022.3.21
