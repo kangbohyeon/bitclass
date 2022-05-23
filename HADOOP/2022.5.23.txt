@@ -1,0 +1,140 @@
+master 계정
+mkdir /dfs
+cd /
+chown -R kbh:kbh /dfs
+
+cd hadoop-3.2.3
+cd etc
+cd hadoop
+
+
+vi hadoop-env.sh
+export JAVA_HOME=~/jdk.1.8.0_333
+
+vi core-site.xml
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs:master:9000</value>
+</property>
+
+
+rsync -av ~/jdk1.8.0_333/ slave1:~/jdk1.8.0_333/
+yes
+kbh
+
+rsync -av ~/jdk1.8.0_333/ slave2:~/jdk1.8.0_333/
+yes
+kbh
+
+rsync -av ~/jdk1.8.0_333/ slave3:~/jdk1.8.0_333/
+yes
+kbh
+
+
+rsync -av ~/hadoop-3.2.3/ slave1:~/hadoop-3.2.3/
+kbh
+
+rsync -av ~/hadoop-3.2.3/ slave2:~/hadoop-3.2.3/
+kbh
+
+rsync -av ~/hadoop-3.2.3/ slave3:~/hadoop-3.2.3/
+kbh
+
+vi core-site.xml
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://master:9000</value>
+</property>
+
+
+vi hdfs-site.xml
+<property>
+<name>dfs.replication</name>
+<value>2</value>
+</property>
+
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>file:///dfs/name</value>
+</property>
+
+<property>
+<name>dfs.namenode.edits.dir</name>
+<value>file:///dfs/edits</value>
+</property>
+
+<property>
+<name>dfs.namenode.secondary.http-address</name>
+<value>slave3:9868</value>
+</property>
+
+vi mapred-site.xml  
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+
+vi yarn-site.xml
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+
+vi workers
+#localhost
+slave1
+slave2
+slave3
+
+
+
+slave (1~3 전부) 
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+
+cd $HADOOP_HOME/etc/hadoop
+vi hdfs-site.xml(1만)
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>file:///dfs/data</value>
+</property>
+
+vi yarn-site.xml(1만)
+<property>
+<name>yarn.resourcemanager.hostname</name>
+<value>master</value>
+</property>
+
+rsync -av ~/hadoop-3.2.3/etc/hadoop/ slave2:/hadoop-3.2.3/etc/hadoop/
+
+rsync -av ~/hadoop-3.2.3/etc/hadoop/ slave3:/hadoop-3.2.3/etc/hadoop/
+
+vi hdfs-site.xml(3만)
+<property>
+<name>dfs.namenode.checkpoint.dir</name>
+<value>file:///dfs/namesecondary</value>
+</property>
+
+
+slave.root (1~3 전부)
+mkdir /dfs
+cd /dfs
+mkdir data
+chown -R kbh:kbh /dfs/data
+
+slave.root (3만)
+mkdir /dfs/namesecondary
+chown -R kbh:kbh /dfs/namesecondary
+
+
+master 계정
+ssh-keygen -t rsa
+cd .ssh
+cp id_rsa.pub authorized_keys
+scp ~/.ssh/id_rsa.pub slave1:~/.ssh/authorized_keys
+scp ~/.ssh/id_rsa.pub slave2:~/.ssh/authorized_keys
+scp ~/.ssh/id_rsa.pub slave3:~/.ssh/authorized_keys
+
+hdfs namenode -format
+
+
