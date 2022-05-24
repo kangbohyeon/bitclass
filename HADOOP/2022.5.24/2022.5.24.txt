@@ -1,0 +1,75 @@
+
+fiewall폐쇄(master, slave1,2,3)
+systemctl mask firewalld
+
+hdfs dfs -mkdir /airline #디렉토리 생성
+hdfs dfs -put 2008.csv /airline/ #airline 디렉토리에 2008.csv파일 업로드
+hdfs dfs -ls /airline
+
+spark install guide
+
+spark.apache.org.Downloads.html
+choose a spark release : 3.1.3
+choose a package type: pre-built for apache hadoop 3.2 and later
+download spark    ->click
+https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz ->click
+
+cd 다운로드
+mv spark-3.1.3-bin-hadoop3.2.tgz ../
+
+tar -xvf spark-3.1.3-bin-hadoop3.2.tgz
+
+mv spark-3.1.3-bin-hadoop3.2 spark-3.1.3
+
+cd spark-3.1.3
+
+cd conf
+
+cp spark-env.sh.template spark-env.sh
+
+vi spark-env.sh
+export SPARK_DIST_CLASSPATH=$(~/hadoop-3.2.3/bin/hadoop classpath)
+export JAVA_HOME=~/jdk1.8.0_333
+
+cp log4j.properties.template log4j.properties
+
+vi log4jproperties
+log4j.rootCategory=INFO, console  -> log4j.rootCategory=WARN, console
+
+
+spark start guide
+spark-3.1.3/sbin/./start-all.sh
+
+pyspark start
+spark-3.1.3/bin/./pyspark
+
+pyspark stop
+exit()
+
+pip3 install --upgrade pip
+python3 -m pip install notebook 
+
+~/spark-3.1.2/bin/pyspark
+
+
+wget https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv
+
+
+hdfs dfs /wine
+
+
+redwine = sc.textFile('wine-qulity/winequality-red.csv',3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
