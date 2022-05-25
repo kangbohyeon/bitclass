@@ -1,4 +1,4 @@
-#mini_project
+# mini_project
 
 ## 1. 주제 선정
   - 2022 날씨빅데이터 콘테스트(https://www.jungle.co.kr/contest/203902)
