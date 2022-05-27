@@ -1,0 +1,21 @@
+Terminal
+LOAD DATA LOCAL INFILE '/Users/bohyenkang/total_data3.csv' INTO TABLE total_data FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+
+Create table
+CREATE TABLE total_data (
+    Indexes VARCHAR(255) NULL,
+    Unnamed VARCHAR(255) NULL,
+    ranked VARCHAR(255) NULL,
+    name VARCHAR(255) NULL,
+    date VARCHAR(255) NULL,
+    total_price VARCHAR(255) NULL,
+    total_price_percent VARCHAR(255) NULL,
+    Audience_num VARCHAR(255) NULL,
+    screen_num VARCHAR(255) NULL,
+    screenings_num VARCHAR(255) NULL,
+    representative_nationality VARCHAR(255) NULL,
+    country VARCHAR(255) NULL,
+    company VARCHAR(255) NULL,
+    rating VARCHAR(255) NULL
+);
