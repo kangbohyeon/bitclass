@@ -12,3 +12,5 @@
   - NoSQL
 ### 4. Linux
 ### 5. Hadoop
+### 6. Front_end
+    - HTML
