@@ -1,0 +1,1 @@
+SELECT * FROM mini_project.rating_csv;
