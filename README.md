@@ -14,3 +14,5 @@
 ### 5. Hadoop
 ### 6. Front_end
     - HTML
+    - CSS
+    - Java script
