@@ -1,4 +1,22 @@
 참고사이트 : https://www.w3schools.com/
+
+
+tomcat 
+
+20번째줄 수정
+
+port : 8001
+
+127번째줄 수정
+
+    <Connector protocol="AJP/1.3"
+               address="::1"
+               port="8009"
+               redirectPort="8443" 
+               secretRequired="false"/>
+
+
+
 eclipc.ini
 
 -vm
