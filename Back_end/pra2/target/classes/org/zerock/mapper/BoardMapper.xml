@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.BoardMapper">
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board2 where bno > 0 
+	</select>
+
+	<insert id="insert">
+		insert into tbl_board2 (bno,name,kor_grade,math_grade,eng_grade)
+		values (seq_board.nextval, #{name}, #{kor_grade}, #{math_grade},#{eng_grade})
+	</insert>
+
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		insert into tbl_board2 (bno,name,kor_grade,math_grade,eng_grade)
+		values (seq_board.nextval, #{name}, #{kor_grade}, #{math_grade},#{eng_grade})
+	</insert>
+
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board2 where bno = #{bno}
+	</select>
+
+
+	<delete id="delete">
+		delete tbl_board2 where bno = #{bno}
+	</delete>
+
+	<update id="update">
+		update tbl_board2
+		set name= #{name},
+		kor_grade=#{kor_grade},
+		math_grade=#{math_grade},
+		eng_grade=#{eng_grade},
+		updateDate = sysdate
+		where bno = #{bno}
+	</update>
+
+</mapper>
