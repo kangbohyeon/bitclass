@@ -1,0 +1,88 @@
+배울거 : aws / docker container / kubernetes/ ELK스택/gcp
+
+zoom
+598 907 3083
+664719
+
+aws 배운거
+1.billing
+2.IAM
+3.ec2(amazon ec2)
+ecc : elastic compute clode
+
+
+aws 인스턴스 : 클라우드의 가상 서버(virtual server in cloud)
+보안그룹(security group: SG) :  인스턴스에 대한 (트래픽을 제어하는) 방화벽 규칙 세트
+방화벽 : 특정 트래픽(port) 허용/차단
+
+
+클라우드 시장종류 :aws, gcp ,azure ,naver cloud
+대시보드(dashboard) : 현황판,계기판
+리전(region) : 전세계 영역
+ex) 서울 리전에서 ec2인스턴스 실행중...
+
+인스턴스 만들기
+ec2 > 인스턴스 > 인스턴스 시작
+22.04 LTS(Long-Term Support)
+20.04 LTS
+18.04 LTS
+16.04 LTS
+
+
+
+Debian - Ubuntu - Raspberry PI(Raspian) - Kali Linux
+-명령어(ex #sudo apt -y update)
+
+RedHat - Fedora - CentOS
+- 명령어( ex #sudo yum -y update
+	   # sudo dnf -y update
+
+$sudo apt -y update
+$sudo apt -y upgrade
+
+
+
+spring 
+
+django(장고)
+nginx(엔진 엑스)
+
+nginx 설치
+$sudo apt -y intsall nginx  : 패키지 설치
+$sudo apt -y remove nginx : 패키지 삭제
+$sudo apt -y purge nginx : 패키지 삭제 좀더 강력
+
+$sudo systemctl status nginx : nginx 상태 확인
+$sudo systemctl start nginx : nginx 시작
+$sudo systemctl stop nginx : nginx 스탑
+
+
+nginx 상태 확인
+$curl http://localhost
+== curl (http://)localhost
+== curl (http://)127.0.0.1
+== curl 퍼브릭 ip주소
+
+
+$cd /var/www/html : 기본 웹페이지 위치
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
