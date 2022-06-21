@@ -1,0 +1,308 @@
+Mr.lee 계정
+
+
+admin 전용
+<amazon 전용 인스턴스>
+sudo yum -y update
+sudo yum -y install nginx
+
+★★★★★★
+<위에꺼가 안되기 때문에 바로 밑에껄로하기>
+=>해결법 : ec2instance connect + ec2FullAccess
+iam 계정으로 ec2 인스턴스 접속문제 해결
+
+
+sudo amazon-linux-extras install nginx1
+
+sudo systemctl status nginx
+sudo systemctl start nginx
+
+
+
+<ubuntu 20.04> 실행
+$sudo apt -y update
+$sudo apt -y upgrade
+$sudo apt -y install nginx
+
+이미지작업
+
+1. 인스턴스 중지 <중지하고 이미지 작업하는거임>
+2. 마우스 오른쪽 이미지생성
+3. 제목 ,설명 쓰고 이미지생성 하고
+4. ec2왼쪽대쉬보드란 이미지항목 AMI 누르고 인스턴스 상태 확인하기 <보통 일반적으로 5~ 10분>대기
+[ 이미지는 돈나가니깐 삭제하는거추천 ], [이미지는 보안그룹이랑 별개임]
+
+5. 인스턴스 게시보드 가서 인스턴스시작 눌러서 만들기
+6. 내 AMI 누르고 고르기
+7. 이미지는 보안그룹이랑 상관없음 해도되긴함
+8. 인스턴스 생성 그럼 복사된 인스턴스 
+
+인스턴스 유형 = Scale up (용량증대 / 증설)
+
+
+(용량증대 / 증설) : 서비스 중단 없이 
+
+용량증대
+1. Scale up  : 댓수 유지(1대 스펙 상향) -cpu , 하드 스펙올린다는개념
+2. Scale out : 동일한 용량의 댓수를 늘리는거(갯수늘어남)
+ - load balancing
+ 
+
+AMI 또다른 기능
+AMI 들어가서 클릭할 이미지 누르고 작업 눌러서 복사하기 그럼 <REGION>다른지역으로복사가능
+--------------------------------------------------------------------------------
+<오후>
+
+
+처음부터 정리
+
+루트 계정> 사용자 만들기
+ec2FullAccess
+ec2instanceconnect
+iamfullAceess
+
+IAM들어가서
+MFA 추가하기(admin 일경우)
+
+ec2 대쉬보드 이동
+인스턴스 시작
+인스턴스 연결
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+
+방화벽 html 추가 및 퍼블릭 ip 복사 후 새창에 붙여넣기
+
+cd /var/www/html
+ll
+sudo vi hello.html
+<h1>helloworld</h1>
+
+sudo apt -y purge nginx 패키지삭제
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
+
+sudo apt -y update
+sudo apt -y upgrade
+
+exit
+인스턴스 정지
+인스턴스 정지됨 확인후 우클릭후 이미지생성
+제목,설명쓰기
+ami 이동
+상태확인
+확인되면 인스터스 시작
+내 ami 로 생성
+생성 후 public ip 복사 후 붙여넣기로 이미지 확인
+끝
+
+
+
+--------------------------------------------------------
+https://aws.amazon.com/ko/ec2/instance-types/
+
+Amazon EC2 G5 인스턴스는 그래픽 집약적인 애플리케이션과 기계 학습 추론을
+가속화하도록 설계되었습니다. 또한 간단한 기계 학습 모델부터 중간 정도의 복잡한
+기계 학습 모델까지 훈련하는 데 사용할 수도 있습니다.
+
+--elastic IP 사용법--
+탄력적 ip ( elastic ) 할당 받고
+연결
+
+ubuntu 에 nginx 설치 후 , 웹 nginx 접속 확인
+
+
+고정 ip 
+   1. nginx/apache web server .. 자동 고정 ip
+=>서버를 끄지 않는 다는 조건이면 고정이 됨 <다만 돈이 나감>
+
+   2. elastip ip > 할당   .. 인스턴스에 연결
+=> 1번같이 nginx는 하루마다 유동적으로 ip주소가 바뀌기때문에 고정하기 위해서 
+
+
+훈민스캔 -> 책찾을때 좋은사이트
+
+
+
+--------------------------------------------------------------------------------
+sudo cat >>hello.html
+
+sudo -su  : 루트로 들어가기
+
+
+편집기안들어가고 만드는법
+echo "<h1> Welcome Welcome Welcome <h1>" >> welcome2.html
+
+-------------------------------------------------------------------------
+★★★★★
+키 페어없이 만들어서 고급세부설정
+=> SSH(port:22) <가상의 컴퓨터서버> 로 못들어가는거
+
+
+
+웹서버 port
+=>HTTP(port:88) 0/0/0/0://0 <<<  lv4
+=>HTTP(port:88) ://0  <<< lv6
+
+
+
+
+고급세부설정에서 사용자데이터칸(맨밑)
+#!/bin/bash
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+
+(한칸 엔터 치고) 생성
+그리고 인스턴스 연결하기
+
+인스턴스 갯수 3개 만드는것 >>>> scale out
+
+
+
+
+
+<유진님이 보내준것>
+
+==편집기안들어가고 만드는법===================================
+★cat / echo    <고급세부설정에선 cat쓰는거아님>
+   cat >> /var/www/html/pasongsong.html
+   echo "<h1>ausongsong~</h1>" >> /var/www/html/ausongsong.html
+
+
+<리눅스안에서 쓸때1>
+★cat을 이용해서 편집기 안들어가서 파일만드는 방법 1★
+<cat , echo둘다 무조건 sudo - su 써서 해야함> =>권한이 없기때문이다 .
+sudo su
+cat >> /var/www/html/hello5.html 	 => 기존의 있는 파일이름에다가는 덮어씌어짐 , 파일이 없다면 파일이생성
+<h1>hello5~~~~</h1> 엔터 후
+ctrl + c
+끝
+
+
+<리눅스안에서 쓸때2>
+★echo는 sudo나 일반 계정 다쓸수잇음★
+echo "<h1> Welcome Welcome Welcome </h1>" >> /var/www/html/hello4.html
+
+
+
+<고급세부설정> ----- 홈페이지에서 쓸때 
+#!/bin/bash
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo echo "<h1> Welcome Welcome Welcome </h1>" >> /var/www/html/welcome2.html
+
+=>bin <실행파일> bash <설정파일>
+nginx 대신 apache2  설치해서 써보기
+똑같음 
+
+------------------------------------------------------------------------------------
+★인스턴스 접속(연결) 방법 실습
+-웹 소켓 기술사용한 연결      => 오래 잠수타면 멈춤
+
+인스턴스 연결 누르기
+SSH클라이언트 
+
+1. 구글 입력창들어가기
+2. mobaxterm download  검색 =>putty보다 많이씀
+3. 다운받은 파일 압축 풀고 실행
+4. session (왼쪽위 모니터모양 )누르기
+5. ssh (왼쪽위 키모양)누르기
+6. Remote host에 퍼블릭 IP주소 복사 붙여넣기
+7. 바로밑의 Advanced SSH settings 누르기
+8. Use private key 누르고 다운받은 keypair 넣기
+9. ok누르기
+10. login as: 사용자이름 ex)ubuntu 라 써져있으면 쓰기
+들어가져있음
+
+ubuntu - ubuntu ( 사용자이름 )
+amazon - ec2-user ( 사용자이름 )
+
+
+aws는 혜자다 750시간 무료 (한달 744 시간)
+
+
+
+-----------------------------------------
+<admin> 권한 전용으로 해야함
+
+S3 => Simple Storage Service [ 저장소 ]
+Region들을 글로벌화함
+
+동일한 버킷 이름이 이미 존재합니다 => 버킷이름은 이세상에서 나만알만한걸로
+iamdonghoon << 내첫 버킷이름
+
+버킷 => 폴더들의 모음
+폴더
+
+
+=> 네이버 클라우드 같은곳임
+=================================================
+aws 람다			aws 람다 <----> python 람다 
+S3 : 저장공간  < Simple Storage Service >
+qjzl
+
+
+
+
+정적웹 ( static web )
+ HTML + CSS + JavaScript
+ 누가 언제 어떻게 access했느냐에 무관하게
+ 항상 일정한 값(contents)를 return.
+
+ ex) 회사 페이지 , 학교 홈페이지 , 
+
+
+
+동적웹 ( dynamic web )
+
+ 누가 언제 어떻게 access했느냐에 따라
+ return 값( contents )이 다름.
+ server-side processing 필요
+	- DB 기술
+	- Script 언어 (ex. node.js , view.js , react 등 )
+
+ ex) youtube.
+
+
+
+정적사이트 공개화  = static web page( hosting ) 만들어보기
+
+<public 권한으로 만들기>
+1. hello.html 파일 업로드 하기
+2. <권한선택>
+3. 퍼블릭 액세스 차단(버킷 설정) 에서 <편집> 누르기
+4. 권한해제
+5. public이 된다.
+6. 버킷정책<편집>
+7. 정책예제 누르기
+
+<속성>
+1. 맽 밑 < 정적 웹 사이트 호스팅 > 에서 편집
+활성화하고
+2. index.html 치기
+3. hello world 버킷에 올렷던 html 파일 내용이 보여짐 
+
+
+
+https://www.free-css.com/ <무료정적 사이트 >
+
+
+---------------------
+
+오늘 
+인스턴스 ami
+nginx > apache2
+탄력적ip 연결
+key pair 없이 instance 띄어본거임
+웹 소캣< 모바일 >
+s3 <버킷>
+ static web page
+
+
+
+
