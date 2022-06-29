@@ -20,3 +20,5 @@
 ### 7. Back_end
     - Spring
     - MVC
+    - Spring boot
+    - Django
