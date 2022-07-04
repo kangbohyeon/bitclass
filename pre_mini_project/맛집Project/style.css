@@ -1,0 +1,22 @@
+html{
+    font-family: 'Gaegu', cursive;
+    font-family: 'Gugi', cursive;
+    font-family: 'Hi Melody', cursive;
+    font-family: 'Single Day', cursive;
+}
+.img-wrap{
+    position: relative;
+    border: 1px solid red;
+    
+}
+
+.text{
+    position: absolute;
+    color: white;
+    top:0px;
+    bottom:-20px;
+}
+
+.img-style{
+    background-size:cover;
+}
