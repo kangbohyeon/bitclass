@@ -4,4 +4,6 @@
 
 7.7 ~ 7.10 : 데이터 전처리 
 
-7.11 ~ :spring boot security 공부
+7.11 ~ 7.12 :spring boot security 공부
+
+7.13 ~ 7.15 : spring boot JWT 공부  
