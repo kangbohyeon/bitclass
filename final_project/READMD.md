@@ -7,3 +7,8 @@
 7.11 ~ 7.12 :spring boot security 공부
 
 7.13 ~ 7.15 : spring boot JWT 공부  
+
+7.16 ~ 7.18 : spring boot dto를 이용한 CRUD
+
+7.18 ~ 7.19 : react, spring boot aws에 올려서 연동, git 공부
+
