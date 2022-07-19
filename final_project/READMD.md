@@ -12,3 +12,13 @@
 
 7.18 ~ 7.19 : react, spring boot aws에 올려서 연동, git 공부
 
+
+
+
+
+프로젝트하면서 어려웠던점
+
+1. spring boot구조 파악
+
+2. 개념부족으로 서버연동하는데 어려웠음 ( ex. localhost:8000/api 랑 localhost:3000/api랑 api만 맞으면 연동가능)
+
