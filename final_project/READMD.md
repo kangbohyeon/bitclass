@@ -16,7 +16,19 @@
 
 7.21 : spring boot rest api 공부, security 공부 및 구현
 
+7.22 ~ 7.24 : spring boot security, jwt 공부 및 구현
 
+7.25 : 회원가입 구현
+
+7.26 : 로그인 구현
+
+7.27 : jwt 토큰 이용하여 로그인 구현
+
+7.28 : access, refresh token 구현
+
+7.29 : react와 토큰을 이용한 로그인, 회원가이 연동
+
+7.30 : 로그아웃 구현
 
 프로젝트하면서 어려웠던점
 
@@ -24,7 +36,6 @@
 
 2. 개념부족으로 서버연동하는데 어려웠음 ( ex. localhost:8000/api 랑 localhost:3000/api랑 api만 맞으면 연동가능)
 
+3. 토큰교환 방식 고민 
 
-개념 공부 
 
-csrf를 사용하지 않는 이유 : rest api를 이용한 서버라면, session 기반 인증과는 다르게 stateless하기 때문에 서버에 인증정보를 보관하지 않는다. rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다. 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
