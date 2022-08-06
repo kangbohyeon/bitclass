@@ -40,6 +40,8 @@
 
 8.5 : react와 flask를 이용한 챗봇 공부,  react 와 board post 연동
 
+8.6 : 프로젝트에 쓸 스택 찾기
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
