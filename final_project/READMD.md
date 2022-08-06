@@ -34,6 +34,12 @@
 
 8.2 : react 와 login, signup 연동
 
+8.3 : react 와 board get 연동
+
+8.4 : flask를 이용한 챗봇 공부
+
+8.5 : react와 flask를 이용한 챗봇 공부,  react 와 board post 연동
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
