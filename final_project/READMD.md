@@ -48,6 +48,10 @@
 
 8.9 : 프로젝트 이벤트를 신청도와주는 챗봇정보찾음
 
+8.10 : react와 spring boot board 연동(get, post,첨부파일)
+
+8.11 : react와 spring boot myplant 연동(get, post,첨부파일)
+
 
 프로젝트하면서 어려웠던점
 
