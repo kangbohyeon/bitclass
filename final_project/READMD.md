@@ -52,6 +52,11 @@
 
 8.11 : react와 spring boot myplant 연동(get, post,첨부파일)
 
+8.12 : spring boot 게시판 post 첨부파일 저장
+
+8.13 : react와 spring boot 게시판 post 첨부파일 저장끝, get 첨부파일
+
+8.14 : react와 spring boot 게시판 첨부파일 get 끝
 
 프로젝트하면서 어려웠던점
 
