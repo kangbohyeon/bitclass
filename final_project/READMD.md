@@ -58,6 +58,9 @@
 
 8.14 : react와 spring boot 게시판 첨부파일 get 끝
 
+8.15 : 챗봇 데이터 수집
+
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
