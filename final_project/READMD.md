@@ -60,6 +60,7 @@
 
 8.15 : 챗봇 데이터 수집
 
+8.16 : react와 spring boot 게시판 첨부파일 delete 끝
 
 프로젝트하면서 어려웠던점
 
@@ -68,5 +69,7 @@
 2. 개념부족으로 서버연동하는데 어려웠음 ( ex. localhost:8000/api 랑 localhost:3000/api랑 api만 맞으면 연동가능)
 
 3. 토큰교환 방식 고민 
+
+4. @Transactional때문에 delete 와 try~catch가 같이 작동이 안됩니다.
 
 
