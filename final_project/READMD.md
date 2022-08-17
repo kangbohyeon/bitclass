@@ -62,6 +62,8 @@
 
 8.16 : react와 spring boot 게시판 첨부파일 delete 끝
 
+8.17 : 식물 데이터 selenium을 이용한 웹크롤링
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
