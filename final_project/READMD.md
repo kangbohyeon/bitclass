@@ -72,6 +72,8 @@
 
 8.21 : aws에 백엔드 배포(aws bucket에 파일업로드후 ec2로 다운로드해보기, build는 실패, 
 
+8.22 : aws 백앤드 s3파일업로드하기, 게시판 update 완료 
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
