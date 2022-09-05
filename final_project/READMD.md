@@ -98,6 +98,8 @@
 
 9.4 : 카카오 로그인 구현 완료
 
+9.5 : spring web client활용하여 flask와 연결
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
