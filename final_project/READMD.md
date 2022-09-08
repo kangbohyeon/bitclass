@@ -100,15 +100,32 @@
 
 9.5 : spring web client활용하여 flask와 연결
 
+9.6 : spring web client활용하여 flask chatbot와 연결완료
+
+9.7 : spring web client활용하여 flask rekognition와 연결완료
+
+9.8 : 이력서 작성
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
 
 2. 개념부족으로 서버연동하는데 어려웠음 ( ex. localhost:8000/api 랑 localhost:3000/api랑 api만 맞으면 연동가능)
 
-3. 토큰교환 방식 고민 
+3. 토큰교환 방식 고민
+고민방식해결 : 
+accesstoken만료시 back에서 accesstoken와 refreshtoken 재발급후 저장하고 권한거부를 내보내지않음
+refreshtoken 만료시 권한거부를 내보내 재로그인할수 잇게 설정
 
 4. @Transactional때문에 delete 와 try~catch가 같이 작동이 안됩니다.
+
+5. web client를 사용하면서 json형태로 보내지 않으며 오류가 나는 현상
+
+6. rekognition을 사용하면서 s3 디렉토리안에 있는 이미지를 사용할때 버킷이름이 아닌 image이름에 경로를 나타내야 접근가능
+
+7. jpa를 사용하면서 dto명고 일치하지 않으면 의존성주입 거부
+
+8. kakao login할때 인가코드를 받고 redirect 주소를 back로하면 front에서 href를 할수없어 front에서 인가코드를 받아 back로 보내주어 해결   
 
 
 
