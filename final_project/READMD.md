@@ -112,6 +112,8 @@
 
 9.13 : spring boot naver login 연결 완료
 
+9.14 : chatterbot storage를 sqlite3에서 mongodb로 변경, flask chat_server와 rekognition_server로 나누는중 
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
