@@ -114,6 +114,8 @@
 
 9.14 : chatterbot storage를 sqlite3에서 mongodb로 변경, flask chat_server와 rekognition_server로 나누는중 
 
+9.15 : flask chat_server와 rekognition_server로 나누기완료 
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
