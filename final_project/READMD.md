@@ -116,6 +116,8 @@
 
 9.15 : flask chat_server와 rekognition_server로 나누기완료 
 
+9.16 : 코드 refactory, npm install --save --legacy-peer-deps로 node_modules 설치
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
