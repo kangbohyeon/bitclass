@@ -118,6 +118,8 @@
 
 9.16 : 코드 refactory, npm install --save --legacy-peer-deps로 node_modules 설치
 
+9.17 : 제출용 포토폴링 작성, 발표 ppt작성
+
 프로젝트하면서 어려웠던점
 
 1. spring boot구조 파악
